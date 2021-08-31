@@ -5,10 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Local File",
+            "name": "Debug Server",
             "type": "Ruby",
             "request": "launch",
-            "program": "${workspaceRoot}/App.rb"
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/App.rb",
+            "debuggerPort": "13001",
         }
     ]
 }

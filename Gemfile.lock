@@ -19,7 +19,7 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
-    sinatra-cors (1.2.0)
+    sqlite3 (1.4.2)
     sysrandom (1.0.5)
     tilt (2.0.10)
     yaml (0.1.1)
@@ -35,7 +35,7 @@ DEPENDENCIES
   rdiscount (~> 2.2)
   sequel (~> 5.47)
   sinatra (~> 2.1)
-  sinatra-cors (~> 1.2)
+  sqlite3 (~> 1.4)
   sysrandom (~> 1.0)
   yaml (~> 0.1.1)
 

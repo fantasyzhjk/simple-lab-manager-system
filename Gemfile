@@ -20,8 +20,8 @@ gem "sinatra", "~> 2.1"
 
 gem "sysrandom", "~> 1.0"
 
-gem "sinatra-cors", "~> 1.2"
-
 # gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 
 gem "rdiscount", "~> 2.2"
+
+gem "sqlite3", "~> 1.4"

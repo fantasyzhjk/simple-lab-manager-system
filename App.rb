@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sinatra/cors'
 require 'securerandom'
 require 'sequel'
 require 'digest'
@@ -7,6 +6,8 @@ require 'rack'
 require 'yaml'
 require 'json'
 require_relative 'src/main'
+
+# Process::UID.change_privilege(48) if Process.uid == 0
 
 ERRORS = YAML.load(File.open('errors.yml'))
 
@@ -24,26 +25,33 @@ class App < Sinatra::Application
     set :server, :puma
     set :threaded, true
     set :bind, '0.0.0.0'
-    set :port, 8080
+    set :port, 9292
     set :show_exceptions, :after_handler
     set :public_folder, __dir__ + '/static'
     set :static_cache_control, [:public, { max_age: 300 }]
     # set :session_store, Rack::Session::Pool
   end
 
-  register Sinatra::Cors
-
-  set :allow_origin, "http://localhost:8080/"
-  set :allow_methods, "GET,HEAD,POST"
-  set :allow_headers, "content-type,if-modified-since"
-  set :expose_headers, "location,link"
-
-  get '/' do
-    # headers["Access-Control-Allow-Origin"] = "*"
-    erb :index
+  not_found do
+    status 200
+    File.open('static/index.html').read
+    # status 404
+    # content_type :json
+    # {
+    #   :code => 404,
+    #   :reason => 'This is nowhere to be found.'
+    # }.to_json
   end
+
   use Base
   use Function
+  
+  get '/' do
+    # headers["Access-Control-Allow-Origin"] = "*"
+    File.open('static/index.html').read
+    # redirect ""
+    # erb :index
+  end
 end
   
 disable :run
