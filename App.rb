@@ -34,13 +34,13 @@ class App < Sinatra::Application
 
   not_found do
     status 200
-    File.open('static/index.html').read
-    # status 404
-    # content_type :json
-    # {
-    #   :code => 404,
-    #   :reason => 'This is nowhere to be found.'
-    # }.to_json
+    # File.open('static/index.html').read
+    status 404
+    content_type :json
+    {
+      :code => 404,
+      :reason => 'This is nowhere to be found.'
+    }.to_json
   end
 
   use Base
@@ -48,9 +48,9 @@ class App < Sinatra::Application
   
   get '/' do
     # headers["Access-Control-Allow-Origin"] = "*"
-    File.open('static/index.html').read
+    # File.open('static/index.html').read
     # redirect ""
-    # erb :index
+    erb :index
   end
 end
   
